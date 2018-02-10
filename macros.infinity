@@ -1,0 +1,396 @@
+;;;
+;;
+;; TF code for Infinitymud.com 4242
+;;	Haplo
+;;
+;;;
+
+;;; Basic Macros see end for killing macros~
+
+/def -p3 -ag -mglob -t'*can\'t be dropped*' gagcantdrop
+/def ed = /cd ~/.tf%;/sh vim macros.infinity%;/purge%;/load ~/.tf/macros.infinity
+/def fix = /purge%;/load ~/.tf/macros.infinity
+/def shop = e%;s%;e%;e%;e%;e%;s%;e
+/def fshop = w%;n%;w%;w%;w%;w%;n%;w
+;;/def run = get all empty bottle from can%;get all empty cup from can%;/shop%;sell all empty bottle%;sell all empty cup%;/fshop%;
+/def guild = e%;s%;w%;w%;w%;nw%;w%;s%;e
+/def fguild = w%;n%;e%;se%;e%;e%;e%;n%;w
+/def re = /recall -mregexp -t 2000 %1
+/def -p1 -mregexp -t'([^ ]*) returns to you.$' bget = get all coins from %P1
+/def -p1 -mglob -t'The wooden panel pops back out and clicks softly' blah = push panel
+;;/def -p1 -mregexp -t'([a-z]*) returns to you.$' bget = get all coins from %1
+;;/def -p1 -mregexp -t'(yabbo|cyan|bloodbane) returns to you.$' bget = get all coins from %P1
+/def -p1 -mregexp -t' *slightly hungry*' shun = eat soup
+/def -p1 -mregexp -t' *slightly thisty*' sthir = drink water
+/def healing = /def -p0 -ag -mglob -t'*' healgag
+/def donehealing = /undef healgag
+;;; Aliases
+/alias bstay say yabbo stay%;say bloodbane stay%;say cyan stay
+/alias sum summon dragon %1
+/alias x exa %*%;search %*%;
+/alias bsell /shop%;get all but katana, coins, key from bag%;sell all unused%;/fshop
+/alias mb unwield blade%;get katana from bag%;wield katana%;mbless%;put katana in bag%;wield blade
+/alias b bladestatus%;mode%;
+;;/alias sac sacrifice %1
+;;/alias ss search tussock%;exa tussock%;search grass%;exa grass%;exa fog%;search fog%; exa bog%;search bog
+/alias ss s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;
+/alias mp mode piercing
+/alias ms mode hacknslash
+/alias ed extradamage
+/alias mh multiplehit
+/alias wq who quick
+/alias . /fg ->
+/alias df buy fire%;drink fire%;hp%;ds
+/alias bc buy coffee%;drink coffee%;hp%;ds
+/alias can put all empty bottle in can%;put all empty cup in can%;
+/alias hh bf2%;df2%;bc4%;dc4%;can%;bc4%;dc4%;/run%;hp%;ds
+/alias h1 /healing%;df%;df%;bc%;bc%;bc%;bc%;/run%;/donehealing%;hp%;ds
+/alias h2 bc%;bc%;bc%;bc%;/run%;hp%;ds
+/alias bk say yabbo kill %1%;say bloodbane kill %1%;say cyan kill %1%;
+/alias bpro tell yabbo protect %1%;tell bloodbane protect %1%;tell cyan protect %1%;
+;;/alias bgive give all unused to %1
+;;/alias bsell say yabbo sell all%;say bloodbane sell all%;say cyan sell all
+;;/alias ye say yabbo eat corpse
+;;/alias be say bloodbane eat corpse
+;;/alias ce say cyan eat corpse
+;;/alias bg give all unused to %1
+;;/alias yr say yabbo run
+;;/alias br say bloodbane run
+;;/alias cr say cyan run
+
+;;; Triggers and Colors
+
+;;/def -p1 -ad -P0Ccyan -F -t'north' north
+;;/def -p1 -ad -P0Ccyan -F -t'northeast' northeast
+;;/def -p1 -ad -P0Ccyan -F -t'northwest' northwest
+;;/def -p1 -ad -P0Ccyan -F -t'east' east
+;;/def -p1 -ad -P0Ccyan -F -t'west' west
+;;/def -p1 -ad -P0Ccyan -F -t'south' south
+;;/def -p1 -ad -P0Ccyan -F -t'southeast' southeast
+;;/def -p1 -ad -P0Ccyan -F -t'southwest' southwest
+/def -p1 -ad -P0Ccyan -F -t'\-Electa Chats\-' wedline
+/def -p1 -ad -t'*you will be forced to quit*' idle = l
+/def -p1 -ad -aCgreen -t'*tells you:*' tells
+/def -p1 -ad -aCblue -t'*you tell*' utell
+/def -p1 -ad -aCmagenta -t'*clantell to you*' clantell
+/def -p1 -ad -P0Ccyan -F -t'CHAT' chat
+/def -p1 -ad -P0Cyellow -F -t([0-9]) numbers
+/def -p1 -ad -P0Cgreen -F -t'\[' lbrac
+/def -p1 -ad -P0Cgreen -F -t'\]' rbrac 
+/def -p1 -ad -P0Ccyan -F -t'\|' pipe 
+/def -p1 -ad -P0Ccyan -F -t'\(' lprent 
+/def -p1 -ad -P0Ccyan -F -t'\)' rprent
+/def -p1 -ad -P0Cyellow -F -t'PUB' pubchat
+/def -p1 -ah -aCred -mglob -t'*Your blood splashes, as Ogre chief batters you with fury*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*Ogre chief pulverizes*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*Ogre chief pounds you*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*knocks the wind out of you*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*deals you a solid blow*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*you crumple*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*scratches you*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*you scream*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*you grunt*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*hits you*' = hp%;
+/def -p1 -ah -aCyellow -t'*Your opponent seems stunned by it.*' stundum
+/def -p1 -ah -aCred -mglob -t'*snaps at you, grazing you*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*savagely decimates you with his blade*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*slices your chest and blood flows*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*slaps you with her tail*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*bites you*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*with her razor-sharp claws*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*with her tail*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*breathes acid*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*wrenches the life from*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*splashes you*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*shreds your flesh*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*slashes through your*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*slams you*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*nicks you*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*rears up and breathes*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*slashes you*' = hp%;
+/def -p1 -ah -aCcyan -mglob -t'*You switch back to fighting normaly*' bladeoutsp = mode hacknslash%;
+/def -p1 -aCcyan -mglob -t'*You drive your blade deep into*' bigstab = say FEEL IT!%;
+/def -ag -t'*\'s baby*' nobaby
+/def -ag -t'*You would not be so mean as to do that to your baby would you*' morenobaby
+/def -p1 -ah -aCcyan -mglob -t'*\-\}\-\-\-*' blades
+
+
+;;; Killing Macros
+
+/def toqueen = e%;s%;w%;w%;w%;nw%;w%;n%;n%;n%;ne%;nw%;n%;n%;n%;alias z exa queen
+;;/def towak = /wak2%;w%;w%;w%;nw%;sw%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;s%;s%;w%;w%;w;w%;w%;w%;w%;w%;alias z exa wylt%;
+/def wak2 = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;nw%;n%;nw%;
+/def -p1 -ah -aCblue -mglob -t'*worn*' 
+/def -p1 -ah -aCyellow -mglob -t'*wielded*' 
+/def togiants = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;w%;w%;w%;alias z exa giant%;
+/def fromgiants = e%;e%;e%;e%;e%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;unalias z%;
+/def topuma = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;n%;w%;w%;s%;s%;s%;w%;w%;w%;w%;w%;alias z exa puma%;
+/def frompuma = e%;e%;e%;e%;e%;n%;n%;n%;e%;e%;s%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;unalias z%;
+/def toguard = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;s%;e%;e%;e%;e%;e%;s%;s%;s%;e%;u%;n%;alias z exa guard%;
+/def fromguard = s%;d%;w%;n%;n%;n%;w%;w%;w%;w%;w%;n%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;unalias z%;
+/def togor = unwield all%;e%;s%;w%;w%;w%;nw%;w%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;w%;w%;w%;w%;s%;s%;s%;w%;u%;u%;wield all%;
+/def fromgor = unwield all%;d%;d%;e%;n%;n%;n%;e%;e%;e%;e%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;e%;se%;e%;e%;e%;n%;w%;wield all%;
+/def -p1 -af -aCgreen -mglob -t'*is in very bad shape*' 
+/def -p1 -ah -aCyellow -mglob -t'*shouts*' 
+/def -p1 -ah -aCyellow -mglob -t'*whispers to you*' 
+/def -p1 -ah -aCcyan -mglob -t'*life has been taken by*' 
+/def wak2 = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;nw%;n%;nw%;
+/def towak = /wak2%;w%;w%;w%;nw%;sw%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;s%;s%;w%;w%;w%;w%;w%;w%;alias z exa wylt%;
+/def tolot = /wak2%;n%;n%;n%;ne%;e%;ne%;e%;e%;n%;n%;n%;n%;nw%;e%;u%;u%;n%;n%;alias z exa lot%;
+/def fwak = e%;e%;e%;e%;e%;e%;n%;n%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;ne%;se%;e%;e%;e%;/wak3%;
+/def flot = s%;s%;d%;d%;w%;se%;s%;s%;s%;s%;w%;w%;sw%;w%;sw%;s%;s%;s%;/wak3%;
+/def wak3 = se%;s%;se%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;unalias z%;
+/def tosun = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;n%;d%;n%;n%;e%;e%;e%;e%;s%;u%;n%;alias z exa templar%;
+/def fromsun = s%;d%;n%;w%;w%;w%;w%;s%;s%;d%;s%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;unalias z%;
+/def -p1 -ah -aCblue -mglob -t'*Gor leaves*' = kill demon%;
+/def tohilt = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;s%;e%;e%;e%;e%;e%;s%;s%;s%;e%;d%;w%;w%;w%;w%;w%;drop all%;lift grate%;get all%;wear all%;wield all%;/hilt2%;
+/def hilt2 = d%;n%;n%;n%;n%;n%;n%;tie rope to grate%;d%;alias z exa elemental%;
+/def fromhilt = u%;s%;s%;s%;s%;s%;s%;u%;e%;e%;e%;e%;e%;u%;w%;n%;n%;n%;w%;w%;w%;w%;w%;n%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;unalias z%;
+/def totower = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;n%;n%;w%;w%;w%;w%;w%;w%;w%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;
+/def fromtower = unlock door%;open door%;out%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;e%;e%;e%;e%;e%;e%;e%;s%;s%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;
+/def topo = unwield all%;e%;s%;w%;w%;w%;nw%;w%;s%;s%;s%;s%;w%;w%;s%;s%;s%;s%;e%;e%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;w%;n%;n%;n%;wield all%;
+/def frompo = unwield all%;s%;s%;s%;e%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;w%;w%;n%;n%;n%;n%;e%;e%;n%;n%;n%;n%;e%;se%;e%;e%;e%;n%;w%;wield all%;
+/def todrunken = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;n%;n%;n%;n%;w%;
+/def run = get all from can%;e%;s%;e%;e%;e%;e%;s%;e%;sell all bottle%;w%;n%;w%;w%;w%;w%;n%;w%;
+/def run2 = get all from can%;e%;s%;s%;s%;s%;s%;s%;s%;e%;e%;se%;e%;e%;e%;e%;e%;e%;e%;s%;e%;sell all bottles%;w%;n%;w%;w%;w%;w%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;n%;n%;n%;n%;w%;
+/def topeak = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;n%;n%;n%;n%;climb%;up%;e%;
+/def frompeak = w%;d%;d%;s%;s%;s%;s%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;
+/def topub = e%;s%;s%;s%;s%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;
+/def tofairy = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;e%;e%;e%;e%;e%;e%;e%;s%;sw%;s%;se%;e%;e%;pay toll%;e%;se%;enter toadstools%;
+/def fromfairy = image%;nw%;w%;w%;w%;nw%;n%;ne%;n%;w%;w%;w%;w%;w%;w%;w%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;
+/def towhelmet = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;s%;e%;e%;e%;e%;e%;e%;s%;s%;e%;e%;e%;n%;w%;%;w%;kill guardian dragon%;d%;
+/def fromwhelmet = up%;out%;e%;e%;s%;w%;w%;w%;n%;n%;w%;w%;w%;w%;w%;w%;n%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;
+/def tobguard = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;n%;w%;n%;n%;alias z exa guard%;
+/def frombguard = s%;s%;e%;s%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;unalias z%;
+/def todrow = /swamp%;/def -1 -t'*ansas*' = /drow2%;
+/def drow2 = ne%;s%;e%;n%;e%;ne%;n%;n%;n%;n%;n%;n%;e%;e%;n%;push button%;alias z exa drow%;
+/def fromdrow = push button%;s%;w%;w%;s%;s%;s%;s%;s%;s%;/swamp2%;
+/def togolem = /swamp%;/def -1 -t'*ansas*' = /golem2%;
+/def golem2 = ne%;s%;e%;n%;e%;ne%;n%;alias z exa golem%;
+/def fromgolem = s%;s%;/swamp2%;
+/def swamp2 = e%;e%;e%;ne%;e%;ne%;e%;s%;w%;enter stump%;u%;n%;n%;n%;n%;n%;n%;n%;n%;se%;e%;e%;e%;n%;w%;unalias z%;
+/def swamp = e%;s%;w%;w%;w%;nw%;s%;s%;s%;s%;s%;smell flower%;
+/def tonmare = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;w%;s%;s%;s%;se%;se%;sw%;clear ground%;e%;w%;d%;e%;se%;
+/def fromnmare = nw%;w%;u%;e%;n%;nw%;nw%;n%;n%;n%;e%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;
+/def toutak = unwield all%;e%;s%;w%;w%;w%;nw%;w%;s%;s%;s%;s%;w%;w%;s%;s%;s%;s%;e%;e%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;/utak2%;
+/def utak2 = s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;e%;e%;e%;e%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;alias z exa utak%;wield all%;
+/def fromutak = s%;s%;u%;u%;u%;u%;n%;/fromutakheal%;
+/def fromutakheal = unwield all%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;w%;w%;w%;w%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;/utak3%;
+/def utak3 = n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;w%;w%;n%;n%;n%;n%;e%;e%;n%;n%;n%;n%;e%;se%;e%;e%;e%;n%;w%;unalias z%;unalias m%;wield all%;
+/def totree = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;s%;e%;e%;e%;e%;e%;e%;s%;s%;e%;e%;e%;e%;s%;s%;w%;s%;alias z exa tree%;
+/def fromtree = n%;e%;n%;n%;w%;w%;w%;w%;n%;n%;w%;w%;w%;w%;w%;w%;w%;n%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;unalias z%;
+/def toblade = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;s%;e%;e%;e%;e%;e%;e%;s%;s%;e%;e%;e%;e%;s%;s%;e%;e%;e%;s%;s%;s%;e%;swim%;dive%;pull lever%;enter tunnel%;
+/def fromblade = w%;w%;w%;w%;w%;u%;s%;e%;e%;e%;e%;e%;u%;w%;n%;n%;n%;w%;w%;w%;w%;w%;n%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;
+/def tocgiant = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;s%;e%;e%;e%;e%;e%;e%;s%;s%;e%;e%;e%;e%;e%;e%;e%;d%;unlock door%;open door%;w%;w%;alias z exa giant%;
+/def fromcgiant = take key%;e%;n%;unlock cage%;open cage%;s%;e%;e%;u%;w%;w%;w%;w%;w%;w%;w%;n%;n%;w%;w%;w%;w%;w%;w%;n%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;unalias z%;
+/def avenger = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;s%;e%;e%;e%;e%;e%;s%;w%;put coal in fire%;pump bellows%;e%;w%;reforge sword%;e%;n%;w%;w%;w%;w%;w%;n%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;put avenger in bag%;
+/def todgolem = e%;s%;w%;w%;w%;nw%;w%;w%;w%;w%;s%;s%;s%;w%;w%;w%;s%;enter white portal%;e%;s%;s%;s%;s%;s%;u%;s%;s%;s%;unlock door%;open door%;alias z exa golem%;
+/def fromdgolem = close door%;lock door%;n%;n%;n%;d%;n%;n%;n%;n%;n%;w%;enter portal%;n%;e%;e%;e%;n%;n%;n%;e%;e%;e%;e%;se%;e%;e%;e%;n%;w%;
+/def toslaad = /towhelmet%;up%;out%;w%;w%;w%;unlock door%;open door%;alias z exa slaad%;
+/def fromslaad = close door%;lock door%;e%;e%;e%;e%;e%;/fromwhelmet%;unalias z%;
+/def tonana = e%;s%;w%;w%;w%;nw%;w%;w%;w%;w%;s%;e%;s%;e%;e%;e%;u%;s%;u%;s%;w%;
+/def fromnana = e%;n%;d%;n%;d%;w%;w%;w%;n%;w%;n%;e%;e%;e%;e%;se%;e%;e%;e%;n%;w%;
+/def tobugs = unwield all%;e%;s%;w%;w%;w%;nw%;w%;s%;s%;s%;s%;w%;w%;s%;s%;s%;s%;e%;e%;s%;wield all%;
+/def frombugs = unwield all%;n%;n%;w%;w%;n%;n%;n%;n%;e%;e%;n%;n%;n%;n%;e%;se%;e%;e%;e%;n%;w%;wield all%;
+/def spirit = e%;s%;w%;w%;w%;nw%;w%;e%;s%;s%;s%;s%;search items%;get all%;skip stone%;alias z exa spirit%;
+/def togarg = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;n%;d%;s%;s%;se%;e%;se%;s%;s%;climb right pedestal%;e%;e%;s%;s%;alias z exa smith%;
+/def fromgarg = n%;n%;w%;w%;d%;n%;n%;nw%;w%;nw%;n%;n%;d%;s%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;%;unalias z%;
+/def torosie = e%;s%;w%;w%;w%;nw%;w%;w%;w%;w%;s%;e%;s%;e%;e%;e%;alias z exa rosie%;
+/def fromrosie = w%;w%;w%;n%;w%;n%;e%;e%;e%;e%;se%;e%;e%;e%;n%;w%;unalias z%;
+/def toempire = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;nw%;nw%;nw%;n%;n%;u%;
+/def fromempire = d%;s%;s%;se%;se%;se%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;
+/def tobalrog = /toempire%;n%;n%;n%;n%;n%;nw%;w%;nw%;n%;n%;nw%;n%;n%;n%;n%;nw%;nw%;nw%;nw%;n%;n%;n%;n%;d%;n%;n%;alias z exa balrog%;
+/def frombalrog = s%;s%;u%;s%;s%;s%;s%;se%;se%;se%;se%;s%;s%;s%;s%;se%;s%;s%;se%;e%;se%;s%;s%;s%;s%;s%;/fromempire%;unalias z%;
+/def totink = /tonana%;search jug%;take dust%;open window%;window%;up%;ahead%;right%;morning%;beach%;alias z exa tinkerbell%;
+/def fromtink = fly%;up%;back%;back%;down%;open window%;window%;/fromnana%;unalias z%;put all dust in can%;
+/def tocguard = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;n%;ne%;nw%;sw%;se%;n%;n%;n%;alias z exa guard%;
+/def fromcguard = s%;s%;s%;nw%;ne%;se%;sw%;s%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;unalias z%;
+/def towarden = e%;s%;w%;w%;w%;nw%;w%;w%;w%;w%;s%;s%;e%;n%;n%;ne%;nw%;ne%;n%;ne%;nw%;nw%;n%;n%;n%;n%;n%;w%;alias z exa warden%;
+/def fromwarden = s%;s%;s%;s%;s%;se%;se%;sw%;s%;sw%;se%;sw%;s%;s%;w%;n%;n%;e%;e%;e%;e%;se%;e%;e%;e%;n%;w%;unalias z%;
+/def statue = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;n%;n%;w%;w%;w%;w%;w%;w%;w%;w%;n%;n%;n%;n%;n%;n%;n%;n%;n%;
+/def fromstatue = s%;s%;s%;s%;s%;s%;s%;s%;s%;e%;e%;e%;e%;e%;e%;e%;e%;s%;s%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;
+/def fromsal = n%;n%;n%;e%;s%;s%;e%;e%;e%;n%;n%;w%;w%;w%;w%;w%;n%;n%;w%;w%;w%;w%;w%;w%;n%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;
+/def togen = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;s%;e%;e%;e%;e%;e%;e%;s%;s%;e%;e%;e%;e%;e%;n%;knock%;n%;n%;w%;alias z exa general%;
+/def fromgen = e%;s%;s%;s%;w%;w%;w%;w%;w%;n%;n%;w%;w%;w%;w%;w%;w%;n%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;unalias z%;
+/def togod = e%;s%;w%;w%;w%;nw%;s%;s%;s%;s%;s%;s%;alias z exa demigod%;
+/def fromgod = n%;n%;n%;n%;n%;n%;se%;e%;e%;e%;n%;w%;unalias z%;
+/def toelf = /toempire%;n%;n%;n%;n%;n%;w%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;
+/def fromelf = s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;e%;s%;s%;s%;s%;s%;/fromempire%;
+/def toshad = /toempire%;n%;n%;n%;n%;n%;w%;n%;n%;n%;n%;n%;n%;w%;n%;n%;n%;n%;alias z exa guard%;
+/def tourgoth = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;n%;n%;w%;w%;w%;w%;w%;w%;w%;w%;n%;n%;n%;n%;n%;e%;e%;n%;n%;alias z exa sir%;
+/def fromurgoth = s%;s%;s%;w%;w%;s%;s%;s%;s%;s%;e%;e%;e%;e%;e%;e%;e%;e%;s%;s%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;unalias z%;
+/def -p1 -ah -aCyellow -mglob -t'*huge yellow pool of slime*' = kill slime%;
+/def tograve = /statue%;w%;open gate%;w%;w%;n%;n%;n%;n%;n%;e%;open gate%;s%;d%;se%;s%;sw%;se%;s%;e%;se%;ne%;e%;se%;s%;e%;e%;ne%;alias z exa skeleton%;
+/def fromgrave = sw%;w%;w%;n%;nw%;w%;sw%;nw%;w%;n%;nw%;ne%;n%;nw%;u%;open gate%;n%;w%;s%;s%;s%;s%;s%;e%;e%;open gate%;e%;e%;/fromstatue%;unalias z%;
+/def toking = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;s%;e%;e%;e%;e%;e%;e%;s%;s%;e%;e%;e%;e%;e%;n%;knock%;n%;n%;e%;alias z exa king%;
+/def fromking = w%;s%;s%;s%;w%;w%;w%;w%;w%;n%;n%;w%;w%;w%;w%;w%;w%;n%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;unalias z%;
+/def totroll = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;e%;enter house%;exa items%;pry wall%;e%;alias z exa troll%;
+/def fromtroll = w%;climb wall%;out%;w%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;unalias z%;
+/def -p1 -ah -aCred -mglob -t'*strikes you*' = hp%;
+/def arena = e%;s%;e%;e%;e%;e%;n%;n%;e%;e%;e%;e%;e%;e%;enter arena%;
+/def band = e%;s%;e%;e%;e%;s%;e%;band%;bname -ME-%;w%;n%;w%;w%;w%;n%;w%;
+/def shield = tell mailorder order elastic shield%;
+/def toulthor = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;n%;n%;w%;w%;w%;w%;w%;w%;w%;w%;n%;n%;n%;n%;n%;w%;w%;alias z exa ulthor%;
+/def fromulthor = e%;e%;s%;s%;s%;s%;s%;e%;e%;e%;e%;e%;e%;e%;e%;s%;s%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;unalias z%;
+/def fromnag = e%;open gate%;e%;open gate%;e%;/fromstatue%;unalias z%;
+/def tonag = /statue%;w%;open gate%;w%;open gate%;w%;alias z exa sir%;
+/def -p1 -mregexp -t'([^ ]*) bows to you.$' nods = nod %p1
+/def eband = /repeat 25 tell mailorder order elastic band%;
+/def frombcp = n%;n%;/fromshakar%;
+/def -p1 -ah -aCblue -mglob -t'*Gor leaves*' = in kill demon%;
+/def pot2 = give potion to demon%;w%;w%;w%;n%;w%;w%;w%;/pot%;
+/def -p1 -ah -aCcyan -mglob -t'*Your pulse returns to normal*' = hp%;
+/def tothor = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;w%;w%;trace runes%;n%;ne%;search veil%;
+/def fromthor = s%;d%;sw%;s%;timeline%;e%;e%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;
+/def toexplorers = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;n%;n%;ne
+/def fromexplorers = sw%;s%;s%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w
+/def toob = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;w%;w%;trace runes
+/def fromob = timeline%;e%;e%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w
+/def g = open gate
+/def fromcomm = s%;s%;s%;nw%;ne%;se%;sw%;s%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;s%;s%;s%;e%;e%;e%;se%;e%;e%;e%;n%;w
+/def tocomm = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;n%;ne%;nw%;sw%;se%;n%;n%;n
+/def -p1 -P0Ccyan -mregexp -F -t'HP:' hps 
+/def -p1 -P0Ccyan -mregexp -F -t'SP:' sps
+/def -p1 -P0Cgreen -mregexp -F -t'(/\*g\*|\#g\#)' gtalk
+/def -p1 -ah -aCgreen -mglob -t'*is in good shape*' goodshape 
+/def -p1 -ah -aCcyan -mglob -t'*is in bad shape*' bs 
+/def -p1 -P0Cgreen -mregexp -F -t'Pike' pike 
+/def fromclerk = e%;e%;e%;e%;d%;s%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;
+/def toclerk = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;n%;d%;w%;w%;w%;w%;
+/def tonagoth = /statue%;w%;open gate%;w%;w%;alias z exa sir%;
+/def fromnagoth = e%;open gate%;e%;e%;/fromstatue%;
+/def -p1 -P0Cgreen -mregexp -F -t'tipsy' tipsy 
+/def -p1 -P0Ccyan -mregexp -F -t'buzzed' buzzed 
+/def -p1 -P0Cmagenta -mregexp -F -t'drunk' drunk 
+/def -p1 -P0Cred -mregexp -F -t'blasted' blasted 
+/def -p1 -P0Cwhite -mregexp -F -t'sober' sober 
+/def -p1 -P0Cwhite -mregexp -F -t'bone dry' bonedry 
+/def -p1 -P0Cgreen -mregexp -F -t'parched' parched 
+/def -p1 -P0Ccyan -mregexp -F -t'damp' damp 
+/def -p1  -P0Ccyan -mregexp -F -t'pleasantly wet' pleasantywet 
+/def -p1 -P0Cred -mregexp -F -t'flooded' flooded 
+/def -p1 -P0Cred -mregexp -F -t'drowned' drowned 
+/def -p1 -P0Cred -mregexp -F -t'numb' numb 
+/def -p1 -P0Cyellow -mregexp -F -t'HAPPY HOUR!' happyhour 
+/def toprotecter = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;se%;w%;w%;s%;s%;w%;nw%;w%;n%;w%;s%;w%;w%;s%;w%;s%;s%;w%;
+/def fromprotecter = e%;e%;n%;n%;e%;n%;e%;e%;n%;e%;s%;e%;se%;e%;n%;n%;e%;e%;nw%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w
+/def fromettin = s%;s%;bang shield
+/def -p1 -mglob -t'*finally reach the top*' dastop = /fromettin2
+/def fromettin2 = out%;s%;sw%;s%;s%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;unalias z%;
+/def -p1 -ah -aCcyan -mglob -t'*is not in good shape*' ngs 
+/def trace = /sh traceroute infinitymud.com
+/def ping = /sh ping infinitymud.com
+/def -p1 -mglob -t'*You will be forced to quit in 5*' idle2 = l
+/def toflesh = e%;s%;w%;w%;w%;nw%;w%;w%;w%;w%;s%;s%;s%;w%;w%;w%;s%;s%;s%;s%;w%;w%;w%;w%;w%;w%;%;w%;w%;s%;s%;s%;s%;s%;s%;se%;e%;s%;s%;s%;s%;s%;u%;u%;e
+/def fromflesh = w%;d%;d%;n%;n%;n%;n%;n%;w%;nw%;n%;n%;n%;n%;n%;n%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;n%;n%;e%;e%;e%;n%;n%;n%;e%;e%;e%;e%;se%;e%;e%;e%;n%;w
+/def togodtree = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;nw%;n%;nw%;w%;w%;w%;nw%;nw%;n%;n%;sw%;w%;w%;n%;n%;w
+/def -p1 -ag -mglob -t'*tries to protect you*' 
+/def fromgodtree = e%;s%;s%;e%;e%;ne%;s%;s%;se%;se%;e%;e%;e%;se%;s%;se%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w
+/def towings = /togodtree%;e%;s%;s%;e%;e%;ne%;e%;se%;s%;e%;
+/def fromwings = w%;n%;nw%;w%;sw%;w%;w%;n%;n%;w%;/fromgodtree
+/def togiklor = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;n%;ne%;n%;n%;n%;d%;n%;w%;w%;n%;n%;n%;nw%;nw%;n%;ne%;nw%;w%;n%;ne%;se%;e%;e%;se%;ne%;n%;n%;w%;w%;n%;n%;d%;
+/def fromgiklor = u%;s%;s%;e%;e%;s%;s%;sw%;nw%;w%;w%;nw%;sw%;s%;e%;se%;sw%;s%;se%;se%;s%;s%;s%;e%;e%;s%;dive%;s%;s%;s%;sw%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w 
+
+/def -p1 -ag -mglob -t'*tries to protect*' 
+/def -p1 -ah -aCcyan -mglob -t'*HP=*' 
+/def -p1 -ah -aCcyan -mglob -t'*HP=*' hp2 
+/def -p1 -ah -aCcyan -mglob -t'*you wear no*' wearno 
+/def toettin = /toexplorers%;n%;n%;jump well%;n%;n%;alias z exa ettin
+;;/def go2 = go%;e%;s%;e%;e%;n%;n%;w%;buy axe%;buy axe%;buy armour%;wear all%;wield all%;e%;s%;s%;w%;w%;n%;w
+/def go = brift%;n%;w%;w%;w%;n%;w%;%;e%;s%;e%;e%;n%;n%;w%;buy axe%;buy armour%;wear all%;sacrifice axe%;wield all%;e%;s%;s%;w%;w%;n%;w%;h1%;h2%;h1%;h2%;h1%;h2%;df%;h2%;pow%;h1%;h2%;df%;h2%;/dbag%;/band
+/alias pow ed%;mh%;mp%;h1%;h2%;
+/alias ws wield all
+/alias uws unwield all
+/alias sac sacrifice %1%;wield blade
+/alias eq eqcheck
+/alias wa wear all
+/def todruid = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;e%;e%;e%;e%;e%;e%;e%;s%;nw%;nw%;alias z exa druid
+/def fromdruid = se%;se%;n%;w%;w%;w%;w%;w%;w%;w%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;unalias z
+/def togry = /toexplorers%;n%;n%;jump well%;w%;w%;nw%;enter west mirror%;alias rr enter archway%;alias z exa gryle%;
+/def fromgry = se%;e%;e%;bang shield%;unalias rr%;unalias z%;
+/def tobtusker = /totroll%;n%;n%;ne%;ne%;n%;n%;enter crack%;u%;u%;u%;se%;e%;se%;climb down%;n%;alias z exa tusker%;
+/def frombtusker = u%;nw%;w%;nw%;enter vent%;d%;d%;out%;s%;s%;sw%;sw%;s%;s%;/fromtroll
+/def tottower = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;nw%;n%;nw%;w%;w%;w%;nw%;nw%;n%;n%;e%;se%;s
+/def fromttower = n%;nw%;w%;s%;s%;se%;se%;e%;e%;e%;se%;s%;se%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w
+;;/def -p1 -ah -aCyellow -t'*You killed*' death = get all from corpse%;
+/def toair = /toflesh%;w%;u%;e%;e%;e%;e%;alias z exa elemental
+/def fromair = w%;w%;w%;w%;d%;/fromflesh%;
+/def toplat = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;n%;n%;n%;n%;u%;u%;e
+/def fromplat = w%;d%;d%;s%;s%;s%;s%;s%;s%;s%;e%;e%;se%;e%;e%;e%;%;%;n%;w
+/def sum = e%;summon dragon yabbo%;h1%;h2%;w%;h1%;h2%;h1%;h2%;h1%;h2%;e%;summon dragon bloodbane%;w%;h1%;h2%;h1%;h2%;h1%;h2%;e%;summon dragon cyan%;w
+/def fromgdrag =  n%;e%;e%;e%;e%;e%;e%;s%;s%;e%;e%;s%;s%;s%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w%;
+/def togdrag = e%;s%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;n%;n%;n%;w%;w%;n%;n%;w%;%;w%;w%;w%;w%;w%;w%;s%;alias z exa green dragon 
+/def tomonk = put coins in bag%;/togdrag%;s%;w%;w%;w%;n%;n%;w%;alias z exa monk
+/def frommonk = e%;s%;s%;e%;e%;e%;n%;/fromgdrag%;get all coins from bag%;unalias z 
+/def toroad = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;
+/def fromroad = w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;
+/def dbag = /toroad%;n%;n%;n%;n%;n%;w%;exa door%;open door%;d%;exa casks%;search casks%;open cask%;enter hollow cask%;w%;portal%;s%;w%;w%;w%;buy bag%;e%;e%;e%;n%;portal%;e%;u%;e%;s%;s%;s%;s%;s%;/fromroad%;put 1 coins in bag
+/def -p0 -ag -mglob -t'*The banner of *' gagband
+/def -p0 -ag -mglob -t'A Beastmaster\'s whip*' gagwhip
+/def -p0 -ag -mglob -t'*orders a*' gagorders
+/def -p0 -ag -mglob -t'*drinks a*' gagdrinks
+/def bgive = /set gbeast=%1%;
+/def frommel = s%;se%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;unalias z 
+;;/def -p1 -ah -aCyellow -t'*You killed*' death = get all from corpse%;give all unused to %{gbeast}%;
+;;/def -p4 -ah -mregexp -aCyellow -t'You killed ([a-z]*).' death = get all from corpse%;soulcut
+/def -p4 -ah -mregexp -aCyellow -t'You killed ([a-z]*).' youkilled = get all from corpse%;/if (fg_world =~ "Infinity(daken)") $(soulcut%;put all unused in bag)%;/elseif (fg_world =~ "Infinity(haplo)") $(give all unused to %{gbeast})%;/endif
+/def sell = e%;s%;e%;e%;e%;e%;s%;e%;sell all unused%;w%;n%;w%;w%;w%;w%;n%;w%;
+/def -p1 -mregexp -t'A ([a-z]*) shmoo' kshmoo = kill shmoo
+/def -p1 -mregexp -t'A shmoo foot soldier' kfootshmoo = kill shmoo
+/def togy = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;nw%;n%;n
+/def fgy = s%;s%;se%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;
+/alias blf bladefocus %1
+/alias sc score
+;;/def -p1 -mregexp -t'chicken died.' kchick = k chicken
+;;/def -p1 -mregexp -t'pig died.' kpig = k pig
+;;/def -p1 -mregexp -t'no pig here' nopig = k swineherd
+/alias kat get katana from bag%;unwield all%;wield katana%;mbless%;put katana in bag%;wield blade
+/alias dd kill ant%;kill puppy%;kill cat%;kill mouse%;kill bee%;kill snake%;kill frog%;
+;;/def -p0 -ag -mregexp -t'No ([a-z]*) here\!' nohere
+/def tomtower = e%;s%;w%;w%;w%;nw%;w%;w%;w%;w%;s%;s%;s%;w%;w%;w%;s%;s%;s%;s%;e%;e%;e%;n%;n%;n%;nw%;n%;e%;n%n%;n%;ne%;
+/def frommtower = sw%;s%;s%;w%;s%;se%;s%;s%;s%;w%;w%;w%;n%;n%;n%;n%;e%;e%;e%;n%;n%;n%;e%;e%;e%;e%;se%;e%;e%;e%;n%;w
+/def tojun = /tonw%;w%;w%;w%;w%;s%;s%;s%;w%;w%;w%;s%;
+/def fromjun = n%;e%;e%;e%;n%;n%;n%;e%;e%;e%;e%;/fromnw%;
+/def fromnw = se%;e%;e%;e%;n%;w%;
+/def tonw = e%;s%;w%;w%;w%;nw%;
+/def togoresh = /tonw%;w%;w%;w%;w%;s%;s%;s%;w%;w%;w%;s%;s%;s%;s%;w%;w%;w%;
+/def fromgoresh = e%;e%;e%;n%;n%;n%;n%;e%;e%;e%;n%;n%;n%;e%;e%;e%;e%;/fromnw%;
+/def toroad = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;
+/def fromroad = w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;
+/def fromg = s%;s%;s%;s%;s%;s%;s%;s%;s%;/fromroad%;unalias z%;
+/def tog = /toroad%;n%;n%;n%;n%;n%;n%;n%;n%;n%;alias z exa guardian%;
+/def txeno = /tonw%;w%;w%;n%;n%;n%;n%;n%;n%;w%;
+/def fxeno = e%;s%;s%;s%;s%;s%;s%;e%;e%;/fromnw%;
+/def fama = nw%;w%;w%;w%;w%;s%;s%;e%;/fxeno%;unalias z%;
+/def tama = /txeno%;w%;n%;n%;e%;e%;e%;e%;se%;alias z exa amaranth
+/def tstomp = /tama%;nw%;ne%;n%;n%;alias z exa lord
+/def fstomp = s%;s%;sw%;se%;/fama
+;;/def -p1 -mregexp -t'A large cat$' kcat = kill cat%;
+;;/def -p1 -mregexp -t'A frog$' kfrog = kill frog%;
+;;/def -p1 -mregexp -t'A mouse$' kmouse = kill mouse%;
+;;/def -p1 -mregexp -t'An ant$' kant = kill ant%;
+;;/def -p1 -mregexp -t'A small puppy$' kpuppy = kill puppy%;
+;;/def -p1 -mregexp -t'A small snake$' ksnake = kill snake%;
+;;/def -p1 -mregexp -t'A bumble bee$' kbee = kill bee%;
+/def toq = /tonw%;w%;w%;n%;n%;n%;e%;e%;e%;e%;e%;e%;e%;
+/def tnoi = /toq%;se%;se%;se%;e%;e%;e%;e%;e%;n%;s%;n%;s%;n%;s%;n%;s%;n%;s%;n%;s%;e%;alias z exa noi
+/def fnoi = w%;s%;n%;s%;n%;s%;n%;s%;n%;s%;n%;s%;n%;e%;w%;w%;w%;w%;w%;nw%;nw%;nw%;/fq%;unalias z%;
+/def togre = /toq%;s%;ne%;ne%;n
+/def fomage = s%;s%;s%;w%;sw%;s%;sw%;sw%;n%;/fq
+/def tomage = /toq%;s%;ne%;ne%;n%;ne%;e%;n%;n%;n%;
+/def fogre = s%;sw%;sw%;n%;/fq
+/def toq = /tonw%;w%;w%;n%;n%;n%;e%;e%;e%;e%;e%;e%;e%;
+/def fq = w%;w%;w%;w%;w%;w%;w%;s%;s%;s%;e%;e%;/fromnw%;
+/def tror = /ttajmal%;n%;n%;n%;n%;n%;e%;e%;e%;e%;alias z exa elf%;
+/def fror = w%;w%;w%;w%;s%;s%;s%;s%;s%;/ftajmal%;
+/def ttajmal = /toroad%;e%;e%;e%;e%;nw%;nw%;nw%;n%;n%;u%;n%;
+/def ftajmal = s%;d%;s%;s%;se%;se%;se%;w%;w%;w%;w%;/fromroad%;
+/def tram = /ttajmal%;n%;n%;n%;n%;w%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;e%;e%;e%;s%;alias z exa ranmosh%;
+/def fram = n%;w%;w%;w%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;s%;e%;s%;s%;s%;s%;/ftajmal%;unalias z%;
+/def tlucy = /tonw%;w%;w%;w%;w%;s%;s%;s%;w%;w%;w%;nw%;e%;
+/def flucy = w%;se%;e%;e%;e%;n%;n%;n%;e%;e%;e%;e%;/fromnw%;unalias z%;
+/def fgod1 = s%;w%;stream%;upstream%;bank%;n%;n%;w%;w%;s%;s%;d%;d%;d%;/flucy
+/def tgod1 = /tlucy%;climb up ladder%;u%;u%;u%;n%;n%;e%;e%;s%;s%;stream%;downstream%;bank%;e%;n%;alias z exa god%;
+/def . = /fg ->
+/def torobes = e%;s%;w%;w%;w%;nw%;w%;w%;w%;w%;s%;s%;s%;w%;w%;w%;s%;s%;s%;s%;e%;e%;e%;n%;n%;n%;nw%;n%;e%;n%;n%;ne
+/def fromrobes = sw%;s%;s%;w%;s%;se%;s%;s%;s%;w%;w%;w%;n%;n%;n%;n%;e%;e%;e%;n%;n%;n%;e%;e%;e%;e%;se%;e%;e%;e%;n%;w%;
