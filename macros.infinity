@@ -297,7 +297,7 @@
 /def -p1 -ah -aCcyan -mglob -t'*you wear no*' wearno 
 /def toettin = /toexplorers%;n%;n%;jump well%;n%;n%;alias z exa ettin
 ;;/def go2 = go%;e%;s%;e%;e%;n%;n%;w%;buy axe%;buy axe%;buy armour%;wear all%;wield all%;e%;s%;s%;w%;w%;n%;w
-/def go = brift%;n%;w%;w%;w%;n%;w%;%;e%;s%;e%;e%;n%;n%;w%;buy axe%;buy armour%;wear all%;sacrifice axe%;wield all%;e%;s%;s%;w%;w%;n%;w%;h1%;h2%;h1%;h2%;h1%;h2%;df%;h2%;pow%;h1%;h2%;df%;h2%;/dbag%;/band
+/def go = e%;s%;e%;e%;n%;n%;w%;buy axe%;buy armour%;wear all%;sacrifice axe%;wield all%;e%;s%;s%;w%;w%;n%;w%;h1%;h2%;h1%;h2%;h1%;h2%;df%;h2%;pow%;h1%;h2%;df%;h2%;/dbag%;/band
 /alias pow ed%;mh%;mp%;h1%;h2%;
 /alias ws wield all
 /alias uws unwield all
@@ -324,7 +324,7 @@
 /def frommonk = e%;s%;s%;e%;e%;e%;n%;/fromgdrag%;get all coins from bag%;unalias z 
 /def toroad = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;
 /def fromroad = w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;
-/def dbag = /toroad%;n%;n%;n%;n%;n%;w%;exa door%;open door%;d%;exa casks%;search casks%;open cask%;enter hollow cask%;w%;portal%;s%;w%;w%;w%;buy bag%;e%;e%;e%;n%;portal%;e%;u%;e%;s%;s%;s%;s%;s%;/fromroad%;put 1 coins in bag
+/def dbag = /toroad%;n%;n%;n%;n%;n%;w%;exa door%;open door%;d%;exa casks%;search casks%;open cask%;enter hollow cask%;w%;portal%;s%;w%;w%;w%;buy bag%;/repeat -0 5 buy stun%;put all scroll in bag%;e%;e%;e%;n%;portal%;e%;u%;e%;s%;s%;s%;s%;s%;/fromroad%;put 1 coins in bag
 /def -p0 -ag -mglob -t'*The banner of *' gagband
 /def -p0 -ag -mglob -t'A Beastmaster\'s whip*' gagwhip
 /def -p0 -ag -mglob -t'*orders a*' gagorders
