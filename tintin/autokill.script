@@ -1,0 +1,47 @@
+#class death open
+#read wander.script
+
+
+#tick multi {multiplehit} {900};
+#action {No %1 here!} {pause;resume};
+#tick {movement} {@wander{}} 2;
+#var killcount 0
+#action {^{A mouse|A bumble bee|A large cat|A frog|A small snake|An ant|A small puppy}} 
+{ 
+   #if {"%1"=="A mouse"} {#var mobname mouse} 
+   #if {"%1"=="A bumble bee"} {#var mobname bee} 
+   #if {"%1"=="A large cat"} {#var mobname cat} 
+   #if {"%1"=="A frog"} {#var mobname frog} 
+   #if {"%1"=="A small snake"} {#var mobname snake}
+   #if {"%1"=="A small puppy"} {#var mobname puppy} 
+   #if {"%1"=="An ant"} {#var mobname ant}; 
+   #if {$combat==0} {
+	kill $mobname;
+	#untick movement;
+	#var foundmob 1;
+	#var combat 1;
+	#action {%1 died.} {#math killcount {$killcount + 1};#var combat 0;l;#showme <039>Kill Counter: $killcount<099>;#tick {movement} {@wander{}} 2};
+	#action {You are now hunting %1.} {#var combat 0;#tick {movement} {@wander{}}2};
+	#action {%1 leaves %2.} {#var combat 0;l;#tick movement {@wander{}} 2};
+	};#else 
+		{#nop Something I guess};
+}
+
+#alias stop {
+	#untick movement;
+	#class death kill;
+	#class killbot kill;
+	#map run 1;
+	#map read urak;
+	#map goto 65;
+}
+
+#alias pause {
+	#var combat 1;
+	#untick movement;
+	#alias resume {
+		#tick movement {@wander{}} 2;
+		#var combat 0;
+	};
+	#showme Paused - use '<029>resume<099>' to continue.
+}

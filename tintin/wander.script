@@ -1,0 +1,19 @@
+#class killbot open
+
+#list targets bee puppy cat snake frog ant
+#var roaming no
+#var killcount 0
+#map get roomvnum start
+#split 15 0
+
+#function {wander} {
+		#map get roomexits exitarray;
+		#list possibleexits create $exitarray[];
+		#list possibleexits size numexit;
+		#math nextroomnum {1d$numexit};
+		#var goto $possibleexits[$nextroomnum];
+		#showme {Next room is: $goto     - Kill Count <039>$killcount<099>};
+		#var result $goto
+		}
+	
+

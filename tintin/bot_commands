@@ -1,0 +1,17 @@
+tt++ tin.run
+So then in the pub, just type
+#map read urak
+#map goto pub
+#map run plain
+autokill
+
+That gets you to the northeast corner of the plain
+Then to lock the map down you can use my alias 'autokill' which types
+#map read plain
+#map goto 1
+#read autokill.script
+
+and #map goto 1
+Then #read autokill.script
+and That's it
+

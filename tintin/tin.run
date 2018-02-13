@@ -1,0 +1,70 @@
+#split
+#session infinity infinitymud.com 4242
+
+#alias {fb} {order 2 firebreather;drink firebreather;%;p;hp;\ds}
+#alias {sober} {order 7 coffee;drink coffee;%;%;%;%;%;%;p;hp;\ds}
+#alias empties {gat;e;s;e;e;e;e;s;e;sell all bottle;sell all cup;w;n;w;w;w;w;n;w;exa can}
+#alias {ex %1} {exa %1;search %1}
+#alias cof {order %1 coffee;#%1 drink coffee;p}
+#alias powerup {multiplehit;extradamage;wield blade;mode}
+#alias powerheal {fb;sober;fb;sober;fb;sober;cof 3}
+#alias {k %1} {kill %1;#alias {x} {exa %1}}
+#map read town
+#map goto pub
+#alias cashout {g from bag;put 1 coin in bag;sell all unused}
+#alias pub {#map run pub}
+#alias shop {#map run shop}
+
+
+#gag {%1 orders %2}
+#gag {%1 drinks %2}
+
+#alias {NW} {northwest}
+#alias {NE} {northeast}
+#alias {SW} {southwest}
+#alias {SE} {southeast}
+
+#action {You will be forced to quit in 5 minutes if you remain idle.} {yawn}
+#action {Harry arrives} {kill harry}
+#action {You killed %1} {gac;t;#unalias x;#var combat 0}
+#action {You can't go %1 here.} {#map undo}
+#action {%2 tells you:} {alias reply tell %2}
+
+
+#HIGHLIGHT {% is in good shape.} {green}
+#HIGHLIGHT {%1 is in bad shape} {bold red}
+#HIGHLIGHT {%1 is in very bad shape} {bold underscore red blink}
+#HIGHLIGHT {%1 is not in good shape} {bold yellow}
+#HIGHLIGHT {You switch back to fighting normaly.} {cyan}
+#high {You feel your blade get heavier and your movements slower.} {cyan}
+#high {You feel the power flow out of your blade.} {cyan}
+
+
+
+
+#nop /* Start in the pub - equipping routine */
+#alias {getbracelet} {#map read grym;#map goto pub;put coins in bag;#map run magicshop;get 1400 coins from bag;buy bracelet;wear bracelet;hpchange;spchange;#map run pub}
+#alias {gotowylt} {#map read wylt;#map goto pub;#map run wylt;#alias back {#map run pub}}
+#alias {gotonagoth} {#map read nagoth;#map goto pub;put coins in bag;#map run nagoth;#map leave;#alias back {#map goto nagoth;#map run pub;get coins from bag}}
+#alias {splint} {#map read town;#map goto pub;e;s;#14 e;s;#5 e;#alias back {#map run pub}}
+#alias {taj} {#map read tajmal;#map goto pub;#split 12 1;#map run aleena}
+#alias {healer} {#map get roomvnum comeback;#map run pub;get coins from bag;powerheal;put coins in bag;#map run $comeback}
+
+#nop /* Combat Messages */
+
+#showme {<049>Combat Tracking Loaded<099>}
+#action {You crumple in pain as your bones crunch.  %1 just laughs.} {hp}
+#action {You scream as %1 deals you a crushing blow.} {hp}
+#action {%1 almost knocks the wind out of you with %2 powerful blow.} {hp}
+#action {You grunt after being hit by %.} {hp}
+#action {%1 deals you a solid blow.} {hp}
+#action {%1 hits you.} {hp}
+#action {%1 scratches you.} {hp}
+
+
+#alias autokill {
+	#map read field;
+	#map goto 1;
+	#read autokill.script
+	}
+
