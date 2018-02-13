@@ -1,0 +1,8 @@
+/set visual off
+/set SHELL=/bin/bash -login
+/set TFPATH=~/mud-scripts/tf %{TFLIBDIR}
+/load /usr/share/tf-lib/alias.tf
+/set shpause=off
+/set max_trig=0
+/load macros.infinity
+/load worlds
