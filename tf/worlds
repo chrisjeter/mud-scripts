@@ -1,0 +1,4 @@
+/def -p4 -mregexp -t'Gold: ([0-9].*) coins' startcoincount = /set startcoins %P1%;/undef startcoincount
+/def in = /addworld -Tlp Infinity(%{muduser}) %{muduser} %{MUDP} infinitymud.com 4242%;/world Infinity(%{muduser})%;score
+/def haplo = /set muduser haplo%;/set toon haplo%;/in
+/def daken = /set muduser daken%;/set toon daken%;/in
