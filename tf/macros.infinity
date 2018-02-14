@@ -8,8 +8,8 @@
 ;;; Basic Macros see end for killing macros~
 
 /def -p3 -ag -mglob -t'*can\'t be dropped*' gagcantdrop
-/def ed = /cd ~/.tf%;/sh vim macros.infinity%;/purge%;/load ~/.tf/macros.infinity
-/def fix = /purge%;/load ~/.tf/macros.infinity
+/def ed = /cd ~/mud-scripts/tf%;/sh vim macros.infinity%;/purge%;/load ~mud-scripts/tf/macros.infinity%;/load ~/mud-scripts/tf/worlds
+/def fix = /purge%;/load ~/mud-scripts/tf/macros.infinity
 /def shop = e%;s%;e%;e%;e%;e%;s%;e
 /def fshop = w%;n%;w%;w%;w%;w%;n%;w
 ;;/def run = get all empty bottle from can%;get all empty cup from can%;/shop%;sell all empty bottle%;sell all empty cup%;/fshop%;
@@ -324,7 +324,7 @@
 /def frommonk = e%;s%;s%;e%;e%;e%;n%;/fromgdrag%;get all coins from bag%;unalias z 
 /def toroad = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;
 /def fromroad = w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;n%;w%;
-/def dbag = /toroad%;n%;n%;n%;n%;n%;w%;exa door%;open door%;d%;exa casks%;search casks%;open cask%;enter hollow cask%;w%;portal%;s%;w%;w%;w%;buy bag%;/repeat -0 5 buy stun%;put all scroll in bag%;e%;e%;e%;n%;portal%;e%;u%;e%;s%;s%;s%;s%;s%;/fromroad%;put 1 coins in bag
+/def dbag = /toroad%;n%;n%;n%;n%;n%;w%;exa door%;open door%;d%;exa casks%;search casks%;open cask%;enter hollow cask%;w%;portal%;s%;w%;w%;w%;buy bag%;buy stun%;buy stun%;buy stun%;buy stun%;buy stun%;put all scroll in bag%;e%;e%;e%;n%;portal%;e%;u%;e%;s%;s%;s%;s%;s%;/fromroad%;put 1 coins in bag
 /def -p0 -ag -mglob -t'*The banner of *' gagband
 /def -p0 -ag -mglob -t'A Beastmaster\'s whip*' gagwhip
 /def -p0 -ag -mglob -t'*orders a*' gagorders
