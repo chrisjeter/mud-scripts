@@ -1,0 +1,8 @@
+#config {tintin char} {/}
+/session infinity infinitymud.com 4242
+/highlight {%1 is in good shape.} {green}
+/highlight {%1 is not in good shape.} {cyan}
+/highlight {%1 is in bad shape.} {cyan}
+/highlight {%1 is in very bad shape.} {red}
+/highlight {{*. (worn) *.}} {blue}
+highlight {wielded} {yellow}
