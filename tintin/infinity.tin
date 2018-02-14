@@ -4,5 +4,12 @@
 /highlight {%1 is not in good shape.} {cyan}
 /highlight {%1 is in bad shape.} {cyan}
 /highlight {%1 is in very bad shape.} {red}
-/highlight {{*. (worn) *.}} {blue}
-highlight {wielded} {yellow}
+/highlight {{.*} (worn)} {blue}
+/highlight {{.*} (wielded)} {yellow}
+/highlight {^%1 tells you: {.*}} {green}
+/highlight {{[0-9]}} {yellow}
+/highlight {[} {green}
+/highlight {]} {green}
+/highlight {|} {cyan}
+/highlight {(} {cyan}
+/highlight {)} {cyan}
