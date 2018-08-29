@@ -2,3 +2,4 @@
 /def in = /addworld -Tlp Infinity(%{muduser}) %{muduser} %{MUDP} infinitymud.com 4242%;/world Infinity(%{muduser})%;score
 /def haplo = /set muduser haplo%;/set toon haplo%;/in
 /def daken = /set muduser daken%;/set toon daken%;/in
+/def mstrish = /set muduser mstrish%;/set toon mstrish%;/in

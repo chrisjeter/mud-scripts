@@ -1,0 +1,16 @@
+#alias {hpbar}
+{
+	#math {hp_percent}{100 * %1 / %2};
+	#math {hpbars1}   {$hp_percent / 5};
+	#math {hpbars2}   {20 - $hpbars1};
+
+	#format {hpbar} {<011>%+${hpbars1}s<099><000>%+${hpbars2}s<099> };
+
+	#showme [$hpbar]
+}
+
+#alias {test}
+{
+	hpbar 30 100
+}
+

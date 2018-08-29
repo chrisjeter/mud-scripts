@@ -8,7 +8,7 @@
 ;;; Basic Macros see end for killing macros~
 
 /def -p3 -ag -mglob -t'*can\'t be dropped*' gagcantdrop
-/def ed = /cd ~/mud-scripts/tf%;/sh vim macros.infinity%;/purge%;/load ~mud-scripts/tf/macros.infinity%;/load ~/mud-scripts/tf/worlds
+/def ed = /cd ~/mud-scripts/tf%;/sh vim macros.infinity%;/purge%;/load ~/mud-scripts/tf/macros.infinity%;/load ~/mud-scripts/tf/worlds
 /def fix = /purge%;/load ~/mud-scripts/tf/macros.infinity
 /def shop = e%;s%;e%;e%;e%;e%;s%;e
 /def fshop = w%;n%;w%;w%;w%;w%;n%;w
@@ -108,6 +108,7 @@
 /def -p1 -ah -aCred -mglob -t'*nicks you*' = hp%;
 /def -p1 -ah -aCred -mglob -t'*rears up and breathes*' = hp%;
 /def -p1 -ah -aCred -mglob -t'*slashes you*' = hp%;
+/def -p1 -ah -aCred -mglob -t'*club smashes into you with incredible force*' = hp
 /def -p1 -ah -aCcyan -mglob -t'*You switch back to fighting normaly*' bladeoutsp = mode hacknslash%;
 /def -p1 -aCcyan -mglob -t'*You drive your blade deep into*' bigstab = say FEEL IT!%;
 /def -ag -t'*\'s baby*' nobaby
@@ -117,7 +118,9 @@
 
 ;;; Killing Macros
 
-/def toqueen = e%;s%;w%;w%;w%;nw%;w%;n%;n%;n%;ne%;nw%;n%;n%;n%;alias z exa queen
+/def togro = e%;s%;w%;w%;w%;w%;nw%;w%;w%;n%;n%;n%;n%;n%;n%;e%;n%;portal%;n%;n%;n%;w%;w%;w%;w%;open door%;
+/def fromgro = e%;e%;e%;e%;s%;s%;s%;portal%;s%;w%;s%;s%;s%;s%;s%;s%;e%;e%;se%;e%;e%;e%;n%;w
+/def toqueen = e%;s%;w%;w%;w%;nw%;w%;n%;n%;n%;ne%;nw%;n%;n%;n%;n%;e%;u%;w%;n%;alias z exa queen
 ;;/def towak = /wak2%;w%;w%;w%;nw%;sw%;s%;s%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;w%;s%;s%;w%;w%;w;w%;w%;w%;w%;w%;alias z exa wylt%;
 /def wak2 = e%;s%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;e%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;n%;nw%;n%;nw%;
 /def -p1 -ah -aCblue -mglob -t'*worn*' 

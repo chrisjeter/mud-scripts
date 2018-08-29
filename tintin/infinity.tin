@@ -1,43 +1,44 @@
 #nop /* Set tt++ command system to / */
-#config {tintin char} {/}
+#nop config {tintin char} {/}
 
 
-/nop /* Setup sessions */
+#nop /* Setup sessions */
 
-/session infinity infinitymud.com 4242
-
-
-/nop /* highlighting ported from TF */
-
-/highlight {%1 is in good shape.} {green}
-/highlight {%1 is not in good shape.} {cyan}
-/highlight {%1 is in bad shape.} {cyan}
-/highlight {%1 is in very bad shape.} {red}
-/highlight {{.*} (worn)} {blue}
-/highlight {{.*} (wielded)} {yellow}
-/highlight {^%1 tells you: {.*}} {green}
-/highlight {{[0-9]}} {yellow}
-/highlight {[} {green}
-/highlight {]} {green}
-/highlight {|} {cyan}
-/highlight {(} {cyan}
-/highlight {)} {cyan}
-/highlight {HP:} {cyan}
-/highlight {SP:} {cyan}
+#session infinity infinitymud.com 4242
 
 
+#nop /* highlighting ported from TF */
+
+#highlight {%1 is in good shape.} {green}
+#highlight {%1 is not in good shape.} {cyan}
+#highlight {%1 is in bad shape.} {cyan}
+#highlight {%1 is in very bad shape.} {red}
+#highlight {{.*} (worn)} {blue}
+#highlight {{.*} (wielded)} {yellow}
+#highlight {^%1 tells you: {.*}} {green}
+#highlight {{[0-9]}} {yellow}
+#nop highlight {[} {green}
+#nop highlight {]} {green}
+#highlight {|} {cyan}
+#nop highlight {(} {cyan}
+#nop highlight {)} {cyan}
+#highlight {HP:} {cyan}
+#highlight {SP:} {cyan}
+#nop high [+%1] {bold green}
 
 
 
-/nop /* actions/triggers */
 
-/nop /* damage messages to track hp */
-/action {You crumple in pain as your bones crunch.  %1 just laughs.} {hp}
-/action {You scream as %1 deals you a crushing blow.} {hp}
-/action {%1 almost knocks the wind out of you with %2 powerful blow.} {hp}
-/action {You grunt after being hit by %.} {hp}
-/action {%1 deals you a solid blow.} {hp}
-/action {%1 hits you.} {hp}
-/action {%1 scratches you.} {hp}
-/action {Ogre chief pulverizes {.*}} {hp}
-/action {Your blood splashes, as Ogre chief batters you with fury} {hp}
+
+#nop /* actions/triggers */
+
+#nop /* damage messages to track hp */
+#action {You crumple in pain as your bones crunch.  %1 just laughs.} {hp}
+#action {You scream as %1 deals you a crushing blow.} {hp}
+#action {%1 almost knocks the wind out of you with %2 powerful blow.} {hp}
+#action {You grunt after being hit by %.} {hp}
+#action {%1 deals you a solid blow.} {hp}
+#action {%1 hits you.} {hp}
+#action {%1 scratches you.} {hp}
+#action {Ogre chief pulverizes {.*}} {hp}
+#action {Your blood splashes, as Ogre chief batters you with fury} {hp}

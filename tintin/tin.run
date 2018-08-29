@@ -11,9 +11,10 @@
 #alias {k %1} {kill %1;#alias {x} {exa %1}}
 #map read town
 #map goto pub
-#alias cashout {g from bag;put 1 coin in bag;sell all unused}
+#alias cashout {shop;g from bag;put 1 coin in bag;sell all unused}
 #alias pub {#map run pub}
 #alias shop {#map run shop}
+#alias map {#map}
 
 
 #gag {%1 orders %2}
@@ -38,7 +39,7 @@
 #HIGHLIGHT {You switch back to fighting normaly.} {cyan}
 #high {You feel your blade get heavier and your movements slower.} {cyan}
 #high {You feel the power flow out of your blade.} {cyan}
-
+#high {You drive your blade deep into %1 belly, and twist it around for good measure.} {bold green}
 
 
 
@@ -60,6 +61,16 @@
 #action {%1 deals you a solid blow.} {hp}
 #action {%1 hits you.} {hp}
 #action {%1 scratches you.} {hp}
+#action {You drive your blade deep into %1's belly, and twist it around for good measure.} {say BINGO}
+
+
+#nop /* Monster Specific */
+#action {^{Amaranth nicks you with his claw.|Amaranth snaps at you, grazing you.|The dragon exhales a cloud of darkness|You get slapped by one of Amaranth's claws.|Amaranth hits you with his right claw.|The cloud seems to suck the life out of you.}} {hp}
+
+
+
+
+
 
 
 #alias autokill {
